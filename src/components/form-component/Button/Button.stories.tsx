@@ -3,7 +3,7 @@ import { Button } from './Button';
 import { FaArrowRight, FaCheck, FaTrash, FaPlus, FaSearch } from 'react-icons/fa';
 
 const meta = {
-  title: 'Inputs/Button',
+  title: 'Form Component/Button',
   component: Button,
   parameters: {
     layout: 'centered',
