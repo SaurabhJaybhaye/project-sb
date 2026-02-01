@@ -67,12 +67,13 @@ export const Button: React.FC<ButtonProps> = ({
   const finalEndIcon = endIcon || (icon && iconPosition === 'right' ? icon : null);
 
   const buttonClass = classNames(
-    styles.button,
-    styles[`button--${variant}`],
-    styles[`button--${size}`],
+    styles['sb-button-component'],
+    styles['sb-button'],
+    styles[`sb-button--${variant}`],
+    styles[`sb-button--${size}`],
     {
-      [styles['button--loading']]: isLoading,
-      [styles['button--icon-only']]: isIconOnly,
+      [styles['sb-button--loading']]: isLoading,
+      [styles['sb-button--icon-only']]: isIconOnly,
     },
     className
   );
@@ -88,7 +89,7 @@ export const Button: React.FC<ButtonProps> = ({
       style={buttonStyle}
       {...props}
     >
-      {isLoading && <span className={styles.spinner} aria-hidden="true" />}
+      {isLoading && <span className={styles['sb-button__spinner']} aria-hidden="true" />}
       
       {/* Show start icon if not loading, AND if (text exists OR (no text but explicitly Icon Only mode shouldn't matter as flex centers it)) */}
       {/* logic: if icon only, we just show the icon. If text exists, we show icon at start/end */}

@@ -1,3 +1,4 @@
+// eslint-disable-next-line storybook/no-renderer-packages
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
 import { FaArrowRight, FaCheck, FaTrash, FaPlus, FaSearch } from 'react-icons/fa';
