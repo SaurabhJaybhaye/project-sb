@@ -1,119 +1,121 @@
 @use '@/styles/variables' as *;
 @use "sass:color";
 
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: $spacing-sm;
-  white-space: nowrap;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  border: 1px solid transparent;
-  outline: none;
-  position: relative;
-  overflow: hidden;
+.sb-button-component {
+  &.sb-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    white-space: nowrap;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent;
+    outline: none;
+    position: relative;
+    overflow: hidden;
 
-  // Base state
-  &:disabled,
-  &--loading {
-    cursor: not-allowed;
-    opacity: 0.7;
-  }
-
-  // Sizes
-  &--sm {
-    padding: $spacing-xs $spacing-sm;
-    font-size: 0.875rem;
-    height: 32px;
-  }
-
-  &--md {
-    padding: $spacing-sm $spacing-md;
-    font-size: 1rem;
-    height: 40px;
-  }
-
-  &--lg {
-    padding: $spacing-md $spacing-lg;
-    font-size: 1.125rem;
-    height: 48px;
-  }
-
-  // Icon only (square)
-  &--icon-only {
-    padding: 0;
-    
-    &.button--sm {
-      width: 32px;
+    // Base state
+    &:disabled,
+    &.sb-button--loading {
+      cursor: not-allowed;
+      opacity: 0.7;
     }
-    
-    &.button--md {
-      width: 40px;
+
+    // Sizes
+    &.sb-button--sm {
+      padding: $spacing-xs $spacing-sm;
+      font-size: 0.875rem;
+      height: 32px;
     }
-    
-    &.button--lg {
-      width: 48px;
+
+    &.sb-button--md {
+      padding: $spacing-sm $spacing-md;
+      font-size: 1rem;
+      height: 40px;
     }
-  }
 
-  // Variants
-  &--primary {
-    background-color: $primary-color;
-    color: white;
-    border-color: $primary-color;
-
-    &:hover:not(:disabled) {
-      background-color: color.adjust($primary-color, $lightness: -10%);
-      border-color: color.adjust($primary-color, $lightness: -10%);
+    &.sb-button--lg {
+      padding: $spacing-md $spacing-lg;
+      font-size: 1.125rem;
+      height: 48px;
     }
-  }
 
-  &--secondary {
-    background-color: $secondary-color;
-    color: white;
-    border-color: $secondary-color;
-
-    &:hover:not(:disabled) {
-      background-color: color.adjust($secondary-color, $lightness: -10%);
-      border-color: color.adjust($secondary-color, $lightness: -10%);
+    // Icon only (square)
+    &.sb-button--icon-only {
+      padding: 0;
+      
+      &.sb-button--sm {
+        width: 32px;
+      }
+      
+      &.sb-button--md {
+        width: 40px;
+      }
+      
+      &.sb-button--lg {
+        width: 48px;
+      }
     }
-  }
 
-  &--outline {
-    background-color: transparent;
-    color: $primary-color;
-    border-color: $primary-color;
+    // Variants
+    &.sb-button--primary {
+      background-color: $primary-color;
+      color: white;
+      border-color: $primary-color;
 
-    &:hover:not(:disabled) {
-      background-color: rgba($primary-color, 0.1);
+      &:hover:not(:disabled) {
+        background-color: color.adjust($primary-color, $lightness: -10%);
+        border-color: color.adjust($primary-color, $lightness: -10%);
+      }
     }
-  }
 
-  &--text {
-    background-color: transparent;
-    color: $primary-color;
-    border-color: transparent;
+    &.sb-button--secondary {
+      background-color: $secondary-color;
+      color: white;
+      border-color: $secondary-color;
 
-    &:hover:not(:disabled) {
-      background-color: rgba($secondary-color, 0.1);
+      &:hover:not(:disabled) {
+        background-color: color.adjust($secondary-color, $lightness: -10%);
+        border-color: color.adjust($secondary-color, $lightness: -10%);
+      }
     }
-  }
 
-  &--danger {
-    background-color: $danger-color;
-    color: white;
-    border-color: $danger-color;
+    &.sb-button--outline {
+      background-color: transparent;
+      color: $primary-color;
+      border-color: $primary-color;
 
-    &:hover:not(:disabled) {
-      background-color: color.adjust($danger-color, $lightness: -10%);
+      &:hover:not(:disabled) {
+        background-color: rgba($primary-color, 0.1);
+      }
+    }
+
+    &.sb-button--text {
+      background-color: transparent;
+      color: $primary-color;
+      border-color: transparent;
+
+      &:hover:not(:disabled) {
+        background-color: rgba($secondary-color, 0.1);
+      }
+    }
+
+    &.sb-button--danger {
+      background-color: $danger-color;
+      color: white;
+      border-color: $danger-color;
+
+      &:hover:not(:disabled) {
+        background-color: color.adjust($danger-color, $lightness: -10%);
+      }
     }
   }
 
   // Loading spinner
-  .spinner {
+  .sb-button__spinner {
     width: 1em;
     height: 1em;
     border: 2px solid currentColor;
