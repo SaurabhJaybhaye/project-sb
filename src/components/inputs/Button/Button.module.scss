@@ -1,4 +1,5 @@
 @use '@/styles/variables' as *;
+@use "sass:color";
 
 .button {
   display: inline-flex;
@@ -41,6 +42,23 @@
     height: 48px;
   }
 
+  // Icon only (square)
+  &--icon-only {
+    padding: 0;
+    
+    &.button--sm {
+      width: 32px;
+    }
+    
+    &.button--md {
+      width: 40px;
+    }
+    
+    &.button--lg {
+      width: 48px;
+    }
+  }
+
   // Variants
   &--primary {
     background-color: $primary-color;
@@ -48,8 +66,8 @@
     border-color: $primary-color;
 
     &:hover:not(:disabled) {
-      background-color: darken($primary-color, 10%);
-      border-color: darken($primary-color, 10%);
+      background-color: color.adjust($primary-color, $lightness: -10%);
+      border-color: color.adjust($primary-color, $lightness: -10%);
     }
   }
 
@@ -59,8 +77,8 @@
     border-color: $secondary-color;
 
     &:hover:not(:disabled) {
-      background-color: darken($secondary-color, 10%);
-      border-color: darken($secondary-color, 10%);
+      background-color: color.adjust($secondary-color, $lightness: -10%);
+      border-color: color.adjust($secondary-color, $lightness: -10%);
     }
   }
 
@@ -90,7 +108,7 @@
     border-color: $danger-color;
 
     &:hover:not(:disabled) {
-      background-color: darken($danger-color, 10%);
+      background-color: color.adjust($danger-color, $lightness: -10%);
     }
   }
 

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
+import { FaArrowRight, FaCheck, FaTrash, FaPlus, FaSearch } from 'react-icons/fa';
 
 const meta = {
   title: 'Inputs/Button',
@@ -26,6 +27,10 @@ const meta = {
     customColor: {
       control: 'color',
     },
+    iconPosition: {
+      control: 'radio',
+      options: ['left', 'right'],
+    },
     onClick: { action: 'clicked' },
   },
 } satisfies Meta<typeof Button>;
@@ -40,39 +45,44 @@ export const Primary: Story = {
   },
 };
 
-export const Secondary: Story = {
+export const WithLeftIcon: Story = {
   args: {
-    children: 'Secondary Button',
+    children: 'Continue',
+    icon: <FaArrowRight />,
+    iconPosition: 'left',
+  },
+};
+
+export const WithRightIcon: Story = {
+  args: {
+    children: 'Checkout',
+    icon: <FaCheck />,
+    iconPosition: 'right',
+  },
+};
+
+export const IconOnly: Story = {
+  args: {
+    icon: <FaPlus />,
     variant: 'secondary',
+    'aria-label': 'Add new item',
   },
 };
 
-export const Outline: Story = {
+export const IconOnlyDanger: Story = {
   args: {
-    children: 'Outline Button',
-    variant: 'outline',
-  },
-};
-
-export const Text: Story = {
-  args: {
-    children: 'Text Button',
-    variant: 'text',
-  },
-};
-
-export const Danger: Story = {
-  args: {
-    children: 'Danger Button',
+    icon: <FaTrash />,
     variant: 'danger',
+    'aria-label': 'Delete item',
   },
 };
 
-export const WithIcon: Story = {
+export const IconOnlyLarge: Story = {
   args: {
-    children: 'Next Step',
-    variant: 'primary',
-    endIcon: <span>→</span>,
+    icon: <FaSearch />,
+    variant: 'outline',
+    size: 'lg',
+    'aria-label': 'Search',
   },
 };
 
@@ -86,6 +96,7 @@ export const Loading: Story = {
 export const CustomColor: Story = {
   args: {
     children: 'Custom Color',
-    customColor: '#8a2be2', // Violet
+    customColor: '#8a2be2',
+    icon: <FaCheck />,
   },
 };

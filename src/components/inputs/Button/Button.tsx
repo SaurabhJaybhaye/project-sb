@@ -30,6 +30,15 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
    */
   endIcon?: ReactNode;
   /**
+   * Icon to display (shorthand for startIcon/endIcon)
+   */
+  icon?: ReactNode;
+  /**
+   * Position of the icon relative to the text
+   * @default 'left'
+   */
+  iconPosition?: 'left' | 'right';
+  /**
    * Custom background color (overrides variant styles)
    */
   customColor?: string;
@@ -42,18 +51,28 @@ export const Button: React.FC<ButtonProps> = ({
   isLoading = false,
   startIcon,
   endIcon,
+  icon,
+  iconPosition = 'left',
   customColor,
   className,
   disabled,
   style,
   ...props
 }) => {
+  const hasChildren = React.Children.count(children) > 0;
+  const isIconOnly = !hasChildren && !!(icon || startIcon || endIcon);
+  
+  // Determine final icons based on position props
+  const finalStartIcon = startIcon || (icon && iconPosition === 'left' ? icon : null);
+  const finalEndIcon = endIcon || (icon && iconPosition === 'right' ? icon : null);
+
   const buttonClass = classNames(
     styles.button,
     styles[`button--${variant}`],
     styles[`button--${size}`],
     {
       [styles['button--loading']]: isLoading,
+      [styles['button--icon-only']]: isIconOnly,
     },
     className
   );
@@ -70,9 +89,18 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
     >
       {isLoading && <span className={styles.spinner} aria-hidden="true" />}
-      {!isLoading && startIcon && <span className={styles.icon}>{startIcon}</span>}
-      <span>{children}</span>
-      {!isLoading && endIcon && <span className={styles.icon}>{endIcon}</span>}
+      
+      {/* Show start icon if not loading, AND if (text exists OR (no text but explicitly Icon Only mode shouldn't matter as flex centers it)) */}
+      {/* logic: if icon only, we just show the icon. If text exists, we show icon at start/end */}
+      
+      {!isLoading && !isIconOnly && finalStartIcon && <span className={styles.icon}>{finalStartIcon}</span>}
+      
+      {hasChildren && <span>{children}</span>}
+      
+      {!isLoading && !isIconOnly && finalEndIcon && <span className={styles.icon}>{finalEndIcon}</span>}
+      
+      {/* Special case: Icon Only - Center it */}
+      {!isLoading && isIconOnly && (icon || startIcon || endIcon)}
     </button>
   );
 };

@@ -22,8 +22,20 @@ describe('Button', () => {
     expect(button.className).toContain('button--loading');
   });
 
-  it('renders with start icon', () => {
-    render(<Button startIcon={<span data-testid="icon">icon</span>}>With Icon</Button>);
-    expect(screen.getByTestId('icon')).toBeTruthy();
+  it('renders with specific start icon', () => {
+    render(<Button startIcon={<span data-testid="start-icon">start</span>}>With Icon</Button>);
+    expect(screen.getByTestId('start-icon')).toBeTruthy();
+  });
+  
+  it('renders with generic icon shorthand (left default)', () => {
+    render(<Button icon={<span data-testid="generic-icon">icon</span>}>Generic</Button>);
+    expect(screen.getByTestId('generic-icon')).toBeTruthy();
+  });
+
+  it('renders as icon-only when no children are present', () => {
+    render(<Button icon={<span data-testid="only-icon">icon</span>} />);
+    const button = screen.getByRole('button');
+    expect(button.className).toContain('button--icon-only');
+    expect(screen.getByTestId('only-icon')).toBeTruthy();
   });
 });
