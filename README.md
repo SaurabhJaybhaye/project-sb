@@ -18,7 +18,7 @@ npm install @saurabh05/nexo-ui
 Start by importing the global CSS file in your application's entry point (e.g., `main.tsx` or `App.tsx`):
 
 ```tsx
-import '@saurabh05/nexo-ui/dist/project-sb.css';
+import '@saurabh05/nexo-ui/dist/nexo-ui.css';
 ```
 
 ## Components

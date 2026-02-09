@@ -24,7 +24,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'ProjectSB',
+      name: 'NexoUI', // Updated library name
       formats: ['es', 'umd'],
       fileName: (format) => `index.${format}.js`,
     },
@@ -34,6 +34,10 @@ export default defineConfig({
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+        },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'style.css') return 'nexo-ui.css';
+          return assetInfo.name as string;
         },
       },
     },
