@@ -1,0 +1,158 @@
+@use '@/styles/variables' as *;
+
+.sb-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  font-family: $font-family-base;
+  width: 100%;
+
+  // Full Width
+  &--full-width {
+    width: 100%;
+  }
+
+  // Label styles
+  &__label {
+    margin-bottom: $spacing-xs;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $dark-color;
+    transition: color 0.2s ease;
+
+    &--error {
+      color: $danger-color;
+    }
+  }
+
+  // Input Container
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    width: 100%; 
+    transition: all 0.2s ease;
+    background-color: #fff;
+
+    // Variants
+    &--outlined {
+      border: 1px solid rgba(0, 0, 0, 0.23); // Standard border
+      &:hover {
+        border-color: $dark-color;
+      }
+      &:focus-within {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+      }
+    }
+
+    &--filled {
+      background-color: rgba(0, 0, 0, 0.06);
+      border-bottom: 2px solid rgba(0, 0, 0, 0.42);
+      border-radius: 4px 4px 0 0;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.09);
+      }
+
+      &:focus-within {
+        border-color: $primary-color;
+        background-color: rgba(0, 0, 0, 0.09);
+      }
+    }
+
+    // States
+    &--error {
+      border-color: $danger-color;
+      
+      &:focus-within {
+        box-shadow: 0 0 0 2px rgba($danger-color, 0.2);
+      }
+      
+      .sb-input-field {
+        color: $danger-color;
+      }
+    }
+
+    &--disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      background-color: rgba(0, 0, 0, 0.04);
+      pointer-events: none;
+    }
+
+    // Sizes
+    &--sm {
+      height: 32px;
+      font-size: 0.8125rem;
+      .sb-input-field {
+        padding: 0 $spacing-sm;
+      }
+    }
+
+    &--md {
+      height: 40px;
+      font-size: 0.875rem;
+      .sb-input-field {
+        padding: 0 $spacing-md;
+      }
+    }
+
+    &--lg {
+      height: 48px;
+      font-size: 1rem;
+      .sb-input-field {
+        padding: 0 $spacing-md;
+      }
+    }
+  }
+
+  // Actual Input Element
+  .sb-input-field {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    color: $dark-color;
+    font-family: inherit;
+    font-size: inherit;
+
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.4);
+    }
+    
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  // Icons
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.54);
+    padding: 0 $spacing-sm;
+
+    &--start {
+      padding-right: 0;
+    }
+
+    &--end {
+      padding-left: 0;
+    }
+  }
+
+  // Helper Text
+  &__helper-text {
+    margin-top: $spacing-xs;
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 1.5;
+
+    &--error {
+      color: $danger-color;
+    }
+  }
+}
