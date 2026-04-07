@@ -1,0 +1,213 @@
+@use '@/styles/variables' as *;
+
+// Checkbox Group
+.sb-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+
+  &__label {
+    margin-bottom: $spacing-sm;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $dark-color;
+    transition: color 0.2s ease;
+
+    &--error {
+      color: $danger-color;
+    }
+  }
+
+  &__checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    &--row {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: $spacing-md;
+    }
+  }
+
+  &__helper-text {
+    margin-top: $spacing-xs;
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 1.5;
+
+    &--error {
+      color: $danger-color;
+    }
+  }
+}
+
+// Single Checkbox
+.sb-checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    z-index: -1;
+
+    // Focus visible
+    &:focus-visible + .sb-checkbox__control {
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+    }
+  }
+
+  &__control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px; // Checkbox squares with slightly rounded corners
+    border: 2px solid rgba(0, 0, 0, 0.23);
+    position: relative;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: transparent;
+    flex-shrink: 0;
+    color: #fff; // For checkmark icon
+    
+    // Checkmark svg
+    svg {
+      width: 1em;
+      height: 1em;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  &__label {
+    margin-left: $spacing-sm;
+    font-size: 1rem;
+    color: $dark-color;
+    font-family: $font-family-base;
+  }
+
+  // Hover state
+  &:hover:not(&--disabled) {
+    .sb-checkbox__control {
+      border-color: rgba(0, 0, 0, 0.54);
+      background-color: rgba($primary-color, 0.04);
+    }
+  }
+
+  // Checked state
+  &__input:checked + &__control, &__input:indeterminate + &__control {
+    border-color: $primary-color;
+    background-color: $primary-color;
+    
+    svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  // Error state
+  &--error {
+    .sb-checkbox__control {
+      border-color: $danger-color;
+    }
+    
+    .sb-checkbox__input:checked + .sb-checkbox__control,
+    .sb-checkbox__input:indeterminate + .sb-checkbox__control {
+      border-color: $danger-color;
+      background-color: $danger-color;
+    }
+    
+    .sb-checkbox__label {
+      color: $danger-color;
+    }
+  }
+
+  // Colors
+  &--primary .sb-checkbox__input:checked + .sb-checkbox__control,
+  &--primary .sb-checkbox__input:indeterminate + .sb-checkbox__control {
+    border-color: $primary-color;
+    background-color: $primary-color;
+  }
+
+  &--secondary .sb-checkbox__input:checked + .sb-checkbox__control,
+  &--secondary .sb-checkbox__input:indeterminate + .sb-checkbox__control {
+    border-color: $secondary-color;
+    background-color: $secondary-color;
+  }
+
+  &--success .sb-checkbox__input:checked + .sb-checkbox__control,
+  &--success .sb-checkbox__input:indeterminate + .sb-checkbox__control {
+    border-color: $success-color;
+    background-color: $success-color;
+  }
+
+  &--danger .sb-checkbox__input:checked + .sb-checkbox__control,
+  &--danger .sb-checkbox__input:indeterminate + .sb-checkbox__control {
+    border-color: $danger-color;
+    background-color: $danger-color;
+  }
+
+  &--warning .sb-checkbox__input:checked + .sb-checkbox__control,
+  &--warning .sb-checkbox__input:indeterminate + .sb-checkbox__control {
+    border-color: $warning-color;
+    background-color: $warning-color;
+  }
+
+  &--info .sb-checkbox__input:checked + .sb-checkbox__control,
+  &--info .sb-checkbox__input:indeterminate + .sb-checkbox__control {
+    border-color: $info-color;
+    background-color: $info-color;
+  }
+
+  // Sizes
+  &--sm {
+    .sb-checkbox__control {
+      width: 16px;
+      height: 16px;
+      svg { font-size: 12px; }
+    }
+    .sb-checkbox__label {
+      font-size: 0.875rem;
+    }
+  }
+
+  &--md {
+    .sb-checkbox__control {
+      width: 20px;
+      height: 20px;
+      svg { font-size: 16px; }
+    }
+    .sb-checkbox__label {
+      font-size: 1rem;
+    }
+  }
+
+  &--lg {
+    .sb-checkbox__control {
+      width: 24px;
+      height: 24px;
+      svg { font-size: 20px; }
+    }
+    .sb-checkbox__label {
+      font-size: 1.125rem;
+    }
+  }
+}
